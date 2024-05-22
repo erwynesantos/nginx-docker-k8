@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-nginx-app
+  namespace: default
+spec:
+replicas: 2
+selector:
+  matchLabels:
+    app: sample-nginx-app
+template:
+  metadata:
+    labels:
+      app: sample-nxing-app
+  spec:
+    containers:
+    - name: sample-nginx-app
+      image: <username>/nginx-image
+      imagePullPolicy: Always
+      ports:
+      - containerPort: 8000
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: sample-nginx-app
+  ports:
+    - port: 80
+      targetPort: 8000
