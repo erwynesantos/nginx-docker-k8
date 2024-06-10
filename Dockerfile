@@ -1,5 +1,5 @@
 FROM nginx:1.25.5-alpine
-COPY /home/ubuntu/webpage.com/ /usr/share/nginx/html
+COPY index.html /usr/share/nginx/html
 
 # This is by defualt but specify explicitly regardless
 EXPOSE 80
